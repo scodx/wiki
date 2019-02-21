@@ -16,10 +16,8 @@ class WikiController extends ControllerBase {
    *   Render array.
    */
   public function landingPage($query) {
-    $result = $query;
-    d($query);
-    echo $query;
-    die();
+    $searchService = \Drupal::service('wiki.search');
+    $result = $searchService->doSearch($query);
     return [
       '#theme' => 'wiki',
       'result' => $result,
