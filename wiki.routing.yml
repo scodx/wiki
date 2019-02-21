@@ -1,0 +1,7 @@
+wiki.landing_page:
+  path: '/wiki/{query}'
+  defaults:
+    _controller: '\Drupal\wiki\Controller\WikiController::landingPage'
+    _title: 'Search Wikipedia'
+  requirements:
+    _permission: 'access content'

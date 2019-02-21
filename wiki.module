@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains wiki.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function wiki_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the wiki module.
+    case 'help.page.wiki':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Search for articles in wikipedia') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function wiki_theme() {
+  return [
+    'wiki' => [
+      'render element' => 'children',
+    ],
+  ];
+}
