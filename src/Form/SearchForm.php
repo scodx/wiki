@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: scodx
- * Date: 2019-02-21
- * Time: 15:50
- */
 
 namespace Drupal\wiki\Form;
 
@@ -61,6 +55,9 @@ class SearchForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    // So it turns out it is a little bit complicated to change and process a
+    // form tu use the GET method, or at least couldn't find a easy way to do it.
+    // So what I did is jus redirect to another route with the query passed
     $query = $form_state->getValue('query');
     $form_state->setRedirect('wiki.search_results', ['query' => $query]);
     return;

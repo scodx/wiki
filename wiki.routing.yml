@@ -8,7 +8,7 @@ wiki.search:
 wiki.search_results:
   path: 'wiki/{query}'
   defaults:
-    _controller: '\Drupal\wiki\Controller\WikiController::landingPage'
+    _controller: '\Drupal\wiki\Controller\WikiController::search'
     _title: 'Search the Wikipedia'
   requirements:
     _permission: 'access content'
