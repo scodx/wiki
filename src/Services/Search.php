@@ -27,7 +27,6 @@ class Search {
    * @return array
    */
   public function prepareOpenSearch($openSearch) {
-    var_dump($openSearch);
     $results = [
       'query' => $openSearch[0],
       'count' => count($openSearch[1]),

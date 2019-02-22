@@ -16,11 +16,16 @@ class WikiController extends ControllerBase {
    *   Render array.
    */
   public function landingPage($query) {
+
+    $form = \Drupal::formBuilder()->getForm('Drupal\wiki\Form\SearchForm');
+    $form['query']['#value'] = $query;
+
     $searchService = \Drupal::service('wiki.search');
     $result = $searchService->doSearch($query);
     return [
       '#theme' => 'wiki',
-      'result' => $result,
+      '#result' => $result,
+      '#form' => $form,
     ];
   }
 

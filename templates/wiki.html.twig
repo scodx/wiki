@@ -1,3 +1,15 @@
-<!-- Add you custom twig html here -->
-{{ result }}
-tettshgdsg
+
+{{ form }}
+
+{% if result.data is not empty %}
+  <h2>Search results for <em>{{ result.query }}</em></h2>
+
+  <dl>
+  {% for item in result.data %}
+    <dt><a href="{{ item.link }}">{{ item.title }}</a></dt>
+    <dd>{{ item.extract }}</dd>
+  {% endfor %}
+  </dl>
+{% else %}
+  <h2>No results for <em>{{ result.query }}</em></h2>
+{% endif %}

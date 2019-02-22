@@ -30,6 +30,10 @@ function wiki_theme() {
   return [
     'wiki' => [
       'render element' => 'children',
+      'variables' => [
+        'result' => [],
+        'form' => [],
+      ],
     ],
   ];
 }
