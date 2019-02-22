@@ -2,4 +2,4 @@ name: 'wiki'
 type: module
 description: 'Search for articles in wikipedia'
 core: 8.x
-package: 'scodx'
+package: 'Wikipedia'

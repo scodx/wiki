@@ -14,9 +14,16 @@ function wiki_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     // Main module help for the wiki module.
     case 'help.page.wiki':
+      // somehow Url::fromRoute wasn't working here...
+      $url = '/wiki';
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Search for articles in wikipedia') . '</p>';
+      $output .= '<p>' . t('Provides a form where you can search for the top 
+        10 finds giving a query term. You can access the form at ') .
+        "<a href='{$url}'>{$url}</a>" .
+        t(', you can also append the term to the url like: ') .
+        "<a href='{$url}/italy'>{$url}/italy</a>" .
+        '</p>';
       return $output;
 
     default:
