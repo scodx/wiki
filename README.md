@@ -35,3 +35,7 @@ The markup is being done at [templates/wiki.html.twig](templates/wiki.html.twig)
 ## Installation
 
 This is not a contrib module so you will not find it at the drupal site nor install trough composer. You must download it and install it manually.
+
+## Limitations
+
+The search only returns the top 10 results, so there is no pagination in place.
