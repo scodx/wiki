@@ -12,11 +12,20 @@ class Search {
    * @return mixed
    */
   public function doSearch($query) {
-    $client = \Drupal::httpClient();
-    $request = $client->get('https://en.wikipedia.org/w/api.php?action=opensearch&search='. $query);
-    // Since the result is in opensearch format we must convert it for a better readability
-    return $this->prepareOpenSearch(json_decode($request->getBody()));
+    $data = [];
+    if ($query !== '') {
+      $client = \Drupal::httpClient();
+      $request = $client->get('https://en.wikipedia.org/w/api.php?action=opensearch&search='. $query);
+      // Since the result is in opensearch format we must convert it for a better readability
+      $data = $this->prepareOpenSearch(json_decode($request->getBody()));
+    }
+    return [
+      'query' => $query,
+      'count' => count($data),
+      'data' => $data,
+    ];
   }
+
 
   /**
    * Converts an array from opensearch format to a more generic one for easer
@@ -27,13 +36,9 @@ class Search {
    * @return array
    */
   public function prepareOpenSearch($openSearch) {
-    $results = [
-      'query' => $openSearch[0],
-      'count' => count($openSearch[1]),
-      'data' => [],
-    ];
+    $results = [];
     foreach ($openSearch[1] as $i => $title) {
-      $results['data'][$i] = [
+      $results[$i] = [
         'title' => $title,
         'extract' => $openSearch[2][$i],
         'link' => $openSearch[3][$i],

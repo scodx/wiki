@@ -3,11 +3,36 @@
 namespace Drupal\wiki\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\wiki\Services\Search;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Controller for the salutation message.
  */
 class WikiController extends ControllerBase {
+
+  /**
+   * @var \Drupal\wiki\Services\Search
+   */
+  protected $wikiSearch;
+
+  /**
+   * WikiController constructor.
+   *
+   * @param \Drupal\wiki\Services\Search $wikiSearch
+   */
+  public function __construct(Search $wikiSearch) {
+    $this->wikiSearch = $wikiSearch;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('wiki.search')
+    );
+  }
 
   /**
    * Route content callback.
@@ -20,8 +45,8 @@ class WikiController extends ControllerBase {
     $form = \Drupal::formBuilder()->getForm('Drupal\wiki\Form\SearchForm');
     $form['query']['#value'] = $query;
 
-    $searchService = \Drupal::service('wiki.search');
-    $result = $searchService->doSearch($query);
+    $result = $this->wikiSearch->doSearch($query);
+
     return [
       '#theme' => 'wiki',
       '#result' => $result,

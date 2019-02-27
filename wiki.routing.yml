@@ -1,14 +1,8 @@
-wiki.search:
-  path: 'wiki'
-  defaults:
-    _form: '\Drupal\wiki\Form\SearchForm'
-    _title: 'Search the Wikipedia'
-  requirements:
-    _permission: 'access content'
 wiki.search_results:
   path: 'wiki/{query}'
   defaults:
     _controller: '\Drupal\wiki\Controller\WikiController::search'
     _title: 'Search the Wikipedia'
+    query: ''
   requirements:
     _permission: 'access content'

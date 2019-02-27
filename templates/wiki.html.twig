@@ -10,6 +10,6 @@
     <dd>{{ item.extract }}</dd>
   {% endfor %}
   </dl>
-{% else %}
+{% elseif result.query is not empty %}
   <h2>No results for <em>{{ result.query }}</em></h2>
 {% endif %}
