@@ -46,7 +46,7 @@ class SearchForm extends FormBase {
   public function validateForm(array &$form, FormStateInterface $form_state) {
     $query = $form_state->getValue('query');
     // Simple validation for the query
-    if (strlen(trim($query)) === '') {
+    if (trim($query) === '') {
       $form_state->setErrorByName('query', $this->t('The query must not be empty.'));
     }
   }
