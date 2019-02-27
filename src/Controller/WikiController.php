@@ -7,7 +7,7 @@ use Drupal\wiki\Services\Search;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Controller for the salutation message.
+ * Controller for the wiki search.
  */
 class WikiController extends ControllerBase {
 
